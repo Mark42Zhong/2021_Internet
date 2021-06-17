@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>http://172.20.31.150:8000/</title>
+    <style>
+        * {margin:0;padding:0;}
+        #mobile-menu {position:fixed;top:0;left:0;width:220px;height:100%;background-color:#373737;z-index:9999;}
+        a:hover ,a:focus{text-decoration:none}
+        .mobile-nav ul li a
+        {
+            color:gray;display:block;padding:0.6em 19%;    border-top:1px solid #4f4f4f;border-bottom:1px solid #292929;transition:all 0.2s ease-out;cursor:pointer;
+            text-decoration: none;
+        }
+        #mobile-menu {position:fixed;top:0;left:0;width:210px;height:100%;background-color:#373737;z-index:9999;transition:all 0.3s ease-in;}
+
+        .mobile-nav ul li a:hover {background-color: #23a1f6;color: #ffffff;}
+        .show-nav {transform:translateX(0);}
+        .hide-nav {transform:translateX(-220px);} /*侧滑关键*/
+        .mobile-nav-taggle {height:35px;line-height:35px;width:35px;background-color:#23A1F6;color:#ffffff;display:inline-block;text-align:center;cursor:pointer}
+        .nav.avbar-inverse{position:relative;}
+        .nav-btn {position:absolute;right:20px;top:20px;}
+        #iframe{
+            margin-left: 220px;
+            width: 1250px;
+            height: 715px;
+            margin-top: -72px;
+        }
+        body{
+            height: 1000px;
+        }
+        ul{
+            margin-top: 20px;
+            width:210px;
+            font-size: 16px;
+        }
+        .button{
+            padding-left: 620px;
+            overflow: hidden;
+        }
+        .buttoninner{
+            float: left;
+            margin-left: 50px;
+        }
+        button{
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+            font-family: inherit;
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid #dcdfe6;
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            font-weight: 500;
+            -webkit-user-select: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            color: #409eff;
+            background: #ecf5ff;
+            border-color: #b3d8ff;
+            margin-left: 10px;
+        }
+        img{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+        }
+        img:hover{
+            cursor: pointer;
+            opacity: 0.6;
+            transition-property:opacity;
+            transition-duration:5s;
+        }
+    </style>
+</head>
+<body>
+<!--  左边导航栏，中间镶嵌一个iframe,下面搞三个button -->
+<!--手机导航栏-->
+<div id="mobile-menu" class="mobile-nav visible-xs visible-sm">
+    <ul id="ulEventEmit">
+        <li class="q1_q2"><a href="#">调查问卷来源分布</a></li>
+        <li class="q3"><a href="#">使用的设备或材料</a></li>
+        <li class="q4_q9_q10_q11"><a href="#">综合</a></li>
+        <li class="q5"><a href="#">课程时长</a></li>
+        <li class="q6_q7"><a href="#">学习情况分析</a></li>
+        <li class="q8"><a href="#">对家人的依赖</a></li>
+        <li class="q12"><a href="#">课堂互动频率</a></li>
+        <li class="q13"><a href="#">遇到的问题</a></li>
+        <li class="q14"><a href="#">学习行为情况</a></li>
+        <li class="q15"><a href="#">线上教育培养的能力</a></li>
+        <li class="q16"><a href="#">线上学习各方面的满意度</a></li>
+        <li class="q17"><a href="#">线上学习的优势</a></li>
+        <li class="q18"><a href="#">线上学习的不足</a></li>
+        <li class="q19"><a href="#">对线上学习的期待</a></li>
+        <li class="q20"><a href="#">疫情结束后喜欢哪种学习模式</a></li>
+    </ul>
+</div>
+<!--pc导航栏-->
+<nav class="navbar-inverse visible-lg visible-md" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">菜鸟教程</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">iOS</a></li>
+                <li><a href="#">SVN</a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Java</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<iframe src="" id="iframe">
+    <p>您的浏览器不支持  iframe 标签。</p>
+</iframe>
+<div class="button">
+    <div class="buttoninner">
+        <button class="button1">hello</button>
+    </div>
+    <div class="buttoninner">
+        <button class="button1">hello</button>
+    </div>
+    <div class="buttoninner">
+        <button class="button1">hello</button>
+    </div>
+    <div class="buttoninner">
+        <button class="button1">hello</button>
+    </div>
+</div>
+
+{#<img src="{% url 'polls:show_squirrel' %}" alt="">#}
+<img src="/static/images/squirrel.png" alt="">
+<script>
+    var questionAll=[];//用来存储所有的路径
+    var q1_q2=["{% url 'polls:show_q1_q2_grade_count' %}","{% url 'polls:show_q1_q2_grid' %}","{% url 'polls:show_q1_q2_school_count' %}"];
+    var q3=["{% url 'polls:show_q3_region' %}","{% url 'polls:show_q3_school' %}","{% url 'polls:show_q3_total' %}"];
+    var q4_q9_q10_q11=["{% url 'polls:show_q4_q9_q10_q11' %}"];
+    var q5=["{% url 'polls:show_q5' %}"];
+    var q6_q7=["{% url 'polls:show_q6_q7_grade' %}","{% url 'polls:show_q6_q7_region' %}","{% url 'polls:show_q6_q7_school' %}"];
+    var q8=["{% url 'polls:show_q8_grade' %}","{% url 'polls:show_q8_region' %}","{% url 'polls:show_q8_school' %}"];
+    var q12=["{% url 'polls:show_q12_region' %}","{% url 'polls:show_q12_school' %}","{% url 'polls:show_q12_total' %}"];
+    var q13=["{% url 'polls:show_q13' %}"];
+    var q14=["{% url 'polls:show_q14_region' %}","{% url 'polls:show_q14_school' %}","{% url 'polls:show_q14_total' %}"];
+    var q15=["{% url 'polls:show_q15_region' %}","{% url 'polls:show_q15_school' %}","{% url 'polls:show_q15_total' %}"];
+    var q16=["{% url 'polls:show_q16_grade' %}","{% url 'polls:show_q16_region' %}","{% url 'polls:show_q16_school' %}"];
+    var q17=["{% url 'polls:show_q17_region' %}","{% url 'polls:show_q17_school' %}","{% url 'polls:show_q17_total' %}"];
+    var q18=["{% url 'polls:show_q18_region' %}","{% url 'polls:show_q18_school' %}","{% url 'polls:show_q18_total' %}"];
+    var q19=["{% url 'polls:show_q19_region' %}","{% url 'polls:show_q19_school' %}","{% url 'polls:show_q19_total' %}"];
+    var q20=["{% url 'polls:show_q20_region' %}","{% url 'polls:show_q20_school' %}","{% url 'polls:show_q20_total' %}"];
+
+    var q1_q2_text=["不同年级","不同地区","不同学校类型"];
+    var q3_text=["不同地区","不同学校类型","总体情况"];
+    var q4_text=["综合"]
+    var q5_text=["课程时长情况"]
+    var q12_text=["不同地区","不同学校类型","互动频率"]
+    var q14_text=["不同地区","不同学校类型","学习行为"]
+    var q15_text=["不同地区","不同学校类型","线上教育培养的能力"]
+    var q18_text=["不同地区","不同学校类型","线上学习的不足"];
+    var q19_text=["不同地区","不同学校类型","对线上学习的期待"];
+    var q20_text=["不同地区","不同学校类型","学习模式"]
+    var ul=document.getElementById('ulEventEmit');//获取ul，下面要使用事件委托来获取li中的内容
+    var iframe=document.getElementsByTagName('iframe')[0];
+    var select=function(btnName,src,index){
+        //用来设置第index个按钮对应的点击事件
+        var btn=document.getElementsByClassName(btnName)[index];
+        //下面代码应该改成DOM2级，否则可能会报错
+        btn.addEventListener('click', function (event) {
+            iframe.src = src;
+        })
+    }
+    //用来封装以一个数组存储路径的一个添加事件的函数
+    var button=document.getElementsByClassName('button1');
+    var selectAddEvent=function (arr,arrName) {//传入参数问题
+        console.log(arrName);
+        //要把button全设置为可用
+        iframe.src=arr[0];
+        for(let i=0;i<arr.length;i++){
+            button[i].style.display="block";;
+            select("buttoninner",arr[i],i);
+            //console.log(arr[i]);
+        }
+        //这里直接修改按钮的文本
+        if(arrName==="q1_q2")addText(button,q1_q2_text)
+        if(arrName==="q3")addText(button,q3_text)
+        if(arrName==="q4_q9_q10_q11")addText(button,q4_text)
+        if(arrName==="q5")addText(button,q5_text)
+        if(arrName==="q6_q7")addText(button,q1_q2_text)
+        if(arrName==="q8")addText(button,q1_q2_text)
+        if(arrName==="q12")addText(button,q12_text)
+        if(arrName==="q13")addText(button,q4_text)
+        if(arrName==="q14")addText(button,q14_text)
+        if(arrName==="q15")addText(button,q15_text)
+        if(arrName==="q16")addText(button,q1_q2_text)
+        if(arrName==="q17")addText(button,q3_text)
+        if(arrName==="q18")addText(button,q18_text)
+        if(arrName==="q19")addText(button,q19_text)
+        if(arrName==="q20")addText(button,q20_text)
+        // 把len之外的按钮设置为disable
+        for(let i=arr.length;i<5;i++){
+            button[i].style.display="none";
+        }
+        //下面把button中的文本进行替换
+
+
+    }
+    function eventDelegate (parentSelector, targetSelector, events, foo) {
+        // 触发执行的函数
+        function triFunction (e) {
+            // 兼容性处理
+            var event = e || window.event;
+
+            // 获取到目标阶段指向的元素
+            var target = event.target || event.srcElement;
+
+            // 获取到代理事件的函数
+            var currentTarget = event.currentTarget;
+
+            // 处理 matches 的兼容性
+            if (!Element.prototype.matches) {
+                Element.prototype.matches =
+                    Element.prototype.matchesSelector ||
+                    Element.prototype.mozMatchesSelector ||
+                    Element.prototype.msMatchesSelector ||
+                    Element.prototype.oMatchesSelector ||
+                    Element.prototype.webkitMatchesSelector ||
+                    function(s) {
+                        var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+                            i = matches.length;
+                        while (--i >= 0 && matches.item(i) !== this) {}
+                        return i > -1;
+                    };
+            }
+
+            // 遍历外层并且匹配
+            while (target !== currentTarget) {
+                // 判断是否匹配到我们所需要的元素上
+                if (target.matches(targetSelector)) {
+                    var sTarget = target;
+                    // 执行绑定的函数，注意 this
+                    foo.call(sTarget, Array.prototype.slice.call(arguments))
+                }
+
+                target = target.parentNode;
+            }
+        }
+
+        // 如果有多个事件的话需要全部一一绑定事件
+        events.split('.').forEach(function (evt) {
+            // 多个父层元素的话也需要一一绑定
+            Array.prototype.slice.call(document.querySelectorAll(parentSelector)).forEach(function ($p) {
+                $p.addEventListener(evt, triFunction);
+            });
+        });
+    }//利用事件委托实现获取标签的字符串
+    //若要修改内容，可把这里的this.innerText改成以ID的形式
+    eventDelegate('#ulEventEmit', 'li', 'click', function () {
+        //console.log(this.className);
+        selectAddEvent(eval(this.className),this.className)//这里的innerText是一个字符串，需要把字符串转化成一个变量名
+
+    })
+    //selectAddEvent(q1_q2);
+    // selectAddEvent(text);//这里的参数应该由侧边栏li标签中的内容获取，应该动态插入button
+
+
+    function addText(elementArr,TextArr){
+        for(let i=0;i<elementArr.length;i++)
+            elementArr[i].innerText=TextArr[i]
+    }
+
+
+
+</script>
+</body>
+</html>
